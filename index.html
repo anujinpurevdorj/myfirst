@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>Chat</title>
+
+    <style>
+        .container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 50px;
+            height: 120px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <p>Hello World</p>
+
+    <textarea id="maintext" row="4"></textarea>
+    <button onclick="send()">Send</button>
+
+    <h1>CHAT!!</h1>
+
+    <p id="chat"></p>
+
+
+
+    <script>
+        function send() {
+
+            var mainText = document.getElementById('maintext').value;
+
+            var node = document.createElement("p");
+
+            var text = document.getElementById("maintext").value;
+
+            var textnode = document.createTextNode(text);
+
+            node.appendChild(textnode);
+
+            document.getElementById("chat").appendChild(node);
+
+            var firebaseRef = firebase.database().ref();
+
+            firebaseRef.push().set(mainText);
+
+        }
+
+        function reload_page() {
+
+            window.location.reload();
+
+        }
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDuY1cOSqPn3vj4sO12dZTJUHHuCppPsM0",
+            authDomain: "chatanujin.firebaseapp.com",
+            databaseURL: "https://chatanujin.firebaseio.com",
+            projectId: "chatanujin",
+            storageBucket: "",
+            messagingSenderId: "428969923879"
+        };
+        firebase.initializeApp(config);
+    </script>
+</body>
